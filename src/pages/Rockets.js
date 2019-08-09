@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {List, ListItem} from '../components/List'
+import {List, ListItem} from '../components/List';
+import link from '../assets/images/link.svg';
 
 class Rockets extends Component {
     state = {
@@ -26,7 +27,7 @@ class Rockets extends Component {
          <h4>Launch Date: {rockets.launch_date_utc}</h4>
          <h4>Details: {rockets.details}</h4>
          <h4>ID: {rockets.rocket.rocket_id}</h4>
-         <h4>Article: {rockets.links.article_link}</h4>
+         <h4>Article: <a href='{rockets.links.article_link}'><img src={link}></img></a></h4>
        </ListItem>
      ))}
       </List>
