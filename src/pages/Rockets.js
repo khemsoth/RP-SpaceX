@@ -17,7 +17,6 @@ class Rockets extends Component {
   render() {
     return(
       <div>
-        
     {this.state.rockets.length ? (
       <List>
         {this.state.rockets.map(rockets =>(

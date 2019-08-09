@@ -2,9 +2,10 @@ body {
   background-image: url('../assets/images/background.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 100vh;
-
+  background-size: cover;
 }
 
 h1 {
-  text-align: center; }
+  text-align: center; 
+  color: #fff;
+}
