@@ -10,40 +10,36 @@ li {
   grid-template-rows: auto;
   grid-template-areas: 
     'badge name type date details id article';
-  border-radius: 15px;
 }
 
-ul {
-  list-style-type: none;
-  display: inline-block;
+.selection {
   width: 80%;
+  border: 1px #fff solid;
+}
+.nav-badge {
+  grid-area: badge
 }
 
-.badge {
-  grid-area: badge;
+.nav-name {
+  grid-area: name
 }
 
-.name {
-  grid-area: name;
+.nav-type {
+  grid-area: type
 }
 
-.type {
-  grid-area: type;
+.nav-date {
+  grid-area: date
 }
 
-.date {
-  grid-area: date;
+.nav-details {
+  grid-area: details
 }
 
-.details {
-  grid-area: details;
+.nav-id {
+  grid-area: id
 }
 
-.id {
-  grid-area: id;
+.nav-article {
+  grid-area: article
 }
-
-.article {
-  grid-area: article;
-}
-
