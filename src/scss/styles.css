@@ -1,16 +1,2 @@
-body {
-  background: url('../assets/images/background.jpg');
-  background-attachment: fixed; 
-  background-size: cover; 
-  background-repeat: no-repeat;
-  color: #fff;
-}
-
-img {
-  max-height: 14px;
-  max-width: 14px;
-}
-
 h1 {
-  text-align: center;
-}
+  text-align: center; }

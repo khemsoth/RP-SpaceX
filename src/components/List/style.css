@@ -37,6 +37,9 @@ ul {
 
 .details {
   grid-area: details;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .id {
@@ -45,5 +48,10 @@ ul {
 
 .article {
   grid-area: article;
+}
+
+.article-img {
+  height: 20px;
+  width: 20px;
 }
 
