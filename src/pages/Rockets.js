@@ -12,6 +12,7 @@ class Rockets extends Component {
     super(props);
     this.state = {
       rockets: [],
+      launch_success: false,
       success: false,
       reuse: false,
       reddit: false
@@ -46,14 +47,17 @@ class Rockets extends Component {
   }
 
  async componentDidMount() {
-   console.log('initial success: ' + this.state.success);
    const res = await fetch('https://api.spacexdata.com/v2/launches');
    const data = await res.json();
-   this.setState({rockets: data});
+   this.setState({
+     rockets: data,
+    });
    console.log(data);
   };
 
   render() {
+    const launchSuccess = this.state.rockets.filter(rockets => rockets.launch_success);
+    const renderSuccess = launchSuccess.map((rockets) => {<li>{rockets}</li>})
     const successStatus = this.state.success;
     const reuseStatus = this.state.reuse;
     let success;
@@ -64,7 +68,7 @@ class Rockets extends Component {
         <div>
           {this.state.rockets.length ? (
        <List>
-          {this.state.rockets.map(rockets =>(
+          {launchSuccess.map(rockets =>(
          <ListItem>
           <h4 className='name'>{rockets.rocket.rocket_name}</h4>
           <h4 className='type'>{rockets.rocket.rocket_type}</h4>
@@ -78,7 +82,7 @@ class Rockets extends Component {
     ) : (
       <h3>Loading rockets...</h3>
     )}
-      </div>} else if(reuseStatus === true) {
+      </div>} else if(reuseStatus === false) {
         reuse =
         <div>
       <h2>Oops</h2>
@@ -87,7 +91,7 @@ class Rockets extends Component {
     return(
       <div>
     <Nav>
-      <img className='refresh-btn' src={refresh}></img>
+      <img className='refresh-btn' onClick={this.componentDidMount} src={refresh}></img>
       <form>
         <label>
           <input type='checkbox' onClick={this.handleSuccess} />
@@ -112,8 +116,7 @@ class Rockets extends Component {
         <h5 className='nav-article'>Article</h5>
       </NavItem>
     </Nav>
-    {success}
-    {reuse}
+      {success}
     </div>
     );
   }
