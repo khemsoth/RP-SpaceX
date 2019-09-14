@@ -4,48 +4,11 @@ import Rockets from '../pages/Rockets';
 import NewList from '../components/NewList';
 import NewNav from '../components/NewNav';
 import NewListItem from '../components/NewListItem';
+import background from '../assets/images/background.jpg'
 
 class App extends Component {
   state = {
-    rockets: [
-    /*
-    {
-      flight_number: 1,
-      name: 'name1',
-      type: 'type1', 
-      date: 'date1', 
-      details: 'details1', 
-      id: 'id1',
-      article: 'article1',
-      success: false,
-      reuse: true,
-      reddit: false,
-    },
-    {
-      flight_number: 2,
-      name: 'name2',
-      type: 'type2', 
-      date: 'date1', 
-      details: 'details2', 
-      id: 'id2',
-      article: 'article2',
-      success: true,
-      reuse: false,
-      reddit: true,
-    },
-    {
-      flight_number: 3,
-      name: 'name3',
-      type: 'type3', 
-      date: 'date3', 
-      details: 'details3', 
-      id: 'id3',
-      article: 'article3',
-      success: false,
-      reuse: false,
-      reddit: true,
-    }, */
-  ],
+    rockets: [],
   launch_success: false,
   reused: false,
   reddit: false
@@ -60,10 +23,10 @@ async componentDidMount() {
 
 
 
-handleSuccess = () => {
-  console.log('Success checked');
-  this.setState({launch_success: !this.state.launch_success});
-  console.log('NEW STATE= ' + this.state.launch_success);
+  handleSuccess = () => {
+    console.log('Success checked');
+    this.setState({launch_success: !this.state.launch_success});
+    console.log('NEW STATE= ' + this.state.launch_success);
   }
   handleReused = () => {
     console.log('Reused checked');
@@ -84,8 +47,28 @@ handleSuccess = () => {
     let reused;
     let reddit;
 
+    const page = {
+      backgroundImage: 'url(' + background + ')',
+      backgroundSize: 'cover',
+      backgroundAttachment: 'fixed',
+      color: '#fff',
+    }
+
+    const titleBar = {
+      padding: '0',
+      margin: '0 auto',
+      listStyleType: 'none',
+      display: 'grid',
+      gridTemplateColumns: '13% 13% 13% 13% 13% 13% 13%',
+      gridTemplateRows: 'auto',
+      gridTemplateAreas:
+        'badge name type date details id article',
+      marginBottom: '1rem',
+    } 
+
      if(this.state.launch_success) {
       let filtArr = this.state.rockets.filter(rocket => rocket.launch_success === true);
+      console.log(filtArr);
       success = filtArr.map(function(success) {
         return <NewListItem rockets={success} key={success.id} />
       })
@@ -109,12 +92,20 @@ handleSuccess = () => {
           return <NewListItem rockets={list} key={list.rocket.flight_number} />
         })
       }
-     
-    
+
 		return (
-			<div id="app" className="page-wrapper">
+			<div id="app" className='page-wrapper' style={page}>
 				<h1>SpaceX Launches</h1>
         <NewNav rockets={this.state.rockets} handleSuccess={this.handleSuccess} handleReused={this.handleReused} handleReddit={this.handleReddit} />
+        <ul style={titleBar}>
+          <li style={titleBar}>Badge</li>
+          <li style={titleBar}>Name</li>
+          <li style={titleBar}>Type</li>
+          <li style={titleBar}>Date</li>
+          <li style={titleBar}>Details</li>
+          <li style={titleBar}>ID</li>
+          <li style={titleBar}>Article</li>
+        </ul>
         {list}
         {success}
         {reused}

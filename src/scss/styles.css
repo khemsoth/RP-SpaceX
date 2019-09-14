@@ -1,2 +1,10 @@
 h1 {
-  text-align: center; }
+  text-align: center; 
+}
+
+body {
+  background-image: url(../assets/images/background.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  color: #fff;
+}
