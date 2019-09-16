@@ -39,6 +39,25 @@ async componentDidMount() {
     console.log('NEW STATE: ' + this.state.reddit);
   }
 
+  uncheck = () => {
+    document.getElementById('checkbox').checked=false;
+  }
+
+  refresh = () => {
+    console.log('Refresh clicked');
+    this.componentDidMount();
+    if(this.state.launch_success) {
+      this.uncheck();
+      this.handleSuccess();
+    } else if(this.state.reddit) {
+      document.getElementById('checkbox').checked = false;
+      this.handleReddit();
+    } else if(this.state.reused) {
+      document.getElementById('checkbox').checked = false;
+      this.handleReused();
+    }
+  }
+
 
 
 	render() {
@@ -47,24 +66,21 @@ async componentDidMount() {
     let reused;
     let reddit;
 
-    const page = {
-      backgroundImage: 'url(' + background + ')',
-      backgroundSize: 'cover',
-      backgroundAttachment: 'fixed',
-      color: '#fff',
-    }
-
     const titleBar = {
       padding: '0',
-      margin: '0 auto',
+      margin: '0 auto 1rem auto',
       listStyleType: 'none',
       display: 'grid',
       gridTemplateColumns: '13% 13% 13% 13% 13% 13% 13%',
       gridTemplateRows: 'auto',
       gridTemplateAreas:
         'badge name type date details id article',
-      marginBottom: '1rem',
+      color: 'blue',
     } 
+
+    const title = {
+      color: '#fff'
+    }
 
      if(this.state.launch_success) {
       let filtArr = this.state.rockets.filter(rocket => rocket.launch_success === true);
@@ -94,9 +110,9 @@ async componentDidMount() {
       }
 
 		return (
-			<div id="app" className='page-wrapper' style={page}>
-				<h1>SpaceX Launches</h1>
-        <NewNav rockets={this.state.rockets} handleSuccess={this.handleSuccess} handleReused={this.handleReused} handleReddit={this.handleReddit} />
+			<div id="app" className='page-wrapper'>
+				<h1 style={title}>SpaceX Launches</h1>
+        <NewNav rockets={this.state.rockets} handleSuccess={this.handleSuccess} handleReused={this.handleReused} handleReddit={this.handleReddit} refresh={this.refresh} />
         <ul style={titleBar}>
           <li style={titleBar}>Badge</li>
           <li style={titleBar}>Name</li>

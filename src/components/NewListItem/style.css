@@ -1,15 +1,15 @@
 ul {
   padding: 0;
-  margin: 0 auto;
+  margin: 0 auto .5rem auto;
   list-style-type: none;
   display: grid;
   grid-template-columns: 13% 13% 13% 13% 13% 13% 13%;
   grid-template-rows: auto;
   grid-template-areas:
     'badge name type date details id article';
-  background-color: rgba(255, 255, 255, .2);
-  margin: .5rem;
+  background-color: rgba(255, 255, 255, .8);
   border-radius: 5px;
+  width: 70%;
 }
 
 li {
@@ -23,18 +23,23 @@ img {
 
 .badge {
   grid-area: badge;
+  margin: auto;
+  text-align: center;
 }
 
 .name {
   grid-area: name;
+  margin: auto;
 }
 
 .type {
   grid-area: type;
+  margin: auto;
 }
 
 .date {
   grid-area: date;
+  margin: auto;
 }
 
 .details {
@@ -42,12 +47,19 @@ img {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  margin: auto 0 auto 0;
 }
 
 .id {
   grid-area: id;
+  margin: auto;
+  text-align: center;
+
 }
 
 .article {
   grid-area: article;
+  margin: auto;
+  text-align: center;
+
 }
