@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../scss/styles.css'
+import '../scss/styles.scss'
 import Rockets from '../pages/Rockets';
 import NewList from '../components/NewList';
 import NewNav from '../components/NewNav';
@@ -86,16 +86,21 @@ async componentDidMount() {
     let reddit;
 
     const titleBar = {
-      padding: '0',
+      backgroundImage: 'linear-gradient(#B6C8D8, #fff)',
+      padding: '.75rem 0',
       margin: '0 auto 1rem auto',
       listStyleType: 'none',
       display: 'grid',
-      gridTemplateColumns: '13% 13% 13% 13% 13% 13% 13%',
+      gridTemplateColumns: '10% 15% 15% 15% 25% 10% 10%',
       gridTemplateRows: 'auto',
       gridTemplateAreas:
         'badge name type date details id article',
-      color: 'blue',
+      color: '#151D3C',
     } 
+
+    const titleText = {
+      textAlign: 'left'
+    }
 
     const title = {
       color: '#fff'
@@ -133,13 +138,13 @@ async componentDidMount() {
 				<h1 style={title}>SpaceX Launches</h1>
         <NewNav rockets={this.state.rockets} handleSuccess={this.handleSuccess} handleReused={this.handleReused} handleReddit={this.handleReddit} refresh={this.refresh} />
         <ul style={titleBar}>
-          <li style={titleBar}>Badge</li>
-          <li style={titleBar}>Name</li>
-          <li style={titleBar}>Type</li>
-          <li style={titleBar}>Date</li>
-          <li style={titleBar}>Details</li>
-          <li style={titleBar}>ID</li>
-          <li style={titleBar}>Article</li>
+          <li style={{textAlign: 'center'}}>Badge</li>
+          <li style={titleText}>Rocket Name</li>
+          <li style={titleText}>Rocket Type</li>
+          <li style={titleText}>Launch Date</li>
+          <li style={titleText}>Details</li>
+          <li style={{textAlign: 'center'}}>ID</li>
+          <li style={{textAlign: 'center'}}>Article</li>
         </ul>
         {list}
         {success}
