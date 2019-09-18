@@ -4,7 +4,8 @@ import Rockets from '../pages/Rockets';
 import NewList from '../components/NewList';
 import NewNav from '../components/NewNav';
 import NewListItem from '../components/NewListItem';
-import background from '../assets/images/background.jpg'
+import background from '../assets/images/background.jpg';
+import checkmark from '../assets/images/checkmark.svg'
 
 class App extends Component {
   state = {
@@ -24,19 +25,37 @@ async componentDidMount() {
 
 
   handleSuccess = () => {
+    let imgStyle = document.getElementById('checkImgSuccess').style.visibility;
     console.log('Success checked');
     this.setState({launch_success: !this.state.launch_success});
     console.log('NEW STATE= ' + this.state.launch_success);
+    if(imgStyle === 'hidden') {
+      document.getElementById('checkImgSuccess').style.visibility = '';
+    } else {
+      document.getElementById('checkImgSuccess').style.visibility = 'hidden'
+    }
   }
   handleReused = () => {
+    let imgStyle = document.getElementById('checkImgReuse').style.visibility;
     console.log('Reused checked');
     this.setState({reused: !this.state.reused});
     console.log('NEW STATE: ' + this.state.reused);
+    if(imgStyle === 'hidden') {
+      document.getElementById('checkImgReuse').style.visibility = '';
+    } else {
+      document.getElementById('checkImgReuse').style.visibility = 'hidden'
+    }
   }
   handleReddit = () => {
+    let imgStyle = document.getElementById('checkImgReddit').style.visibility;
     console.log('Reddit checked');
     this.setState({reddit: !this.state.reddit});
     console.log('NEW STATE: ' + this.state.reddit);
+    if(imgStyle === 'hidden') {
+      document.getElementById('checkImgReddit').style.visibility = '';
+    } else {
+      document.getElementById('checkImgReddit').style.visibility = 'hidden'
+    }
   }
 
   uncheck = () => {
@@ -50,10 +69,10 @@ async componentDidMount() {
       this.uncheck();
       this.handleSuccess();
     } else if(this.state.reddit) {
-      document.getElementById('checkbox').checked = false;
+      this.uncheck();
       this.handleReddit();
     } else if(this.state.reused) {
-      document.getElementById('checkbox').checked = false;
+      this.uncheck();
       this.handleReused();
     }
   }
