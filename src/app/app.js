@@ -126,7 +126,7 @@ async componentDidMount() {
         reddit = filtArr.map(function(reddit) {
           return <NewListItem rockets={reddit} key={reddit.rocket.flight_number} />
         })
-      }
+      } 
       else {
         list = this.state.rockets.map(function(list) {
           return <NewListItem rockets={list} key={list.rocket.flight_number} />
