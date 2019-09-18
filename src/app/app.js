@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import '../scss/styles.scss'
-import Rockets from '../pages/Rockets';
-import NewList from '../components/NewList';
+import '../scss/styles.css'
 import NewNav from '../components/NewNav';
 import NewListItem from '../components/NewListItem';
-import background from '../assets/images/background.jpg';
-import checkmark from '../assets/images/checkmark.svg'
 
 class App extends Component {
   state = {
