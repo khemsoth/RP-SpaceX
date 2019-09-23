@@ -103,12 +103,37 @@ async componentDidMount() {
     }
 
      if(this.state.launch_success) {
-      let filtArr = this.state.rockets.filter(rocket => rocket.launch_success === true);
-      console.log(filtArr);
-      success = filtArr.map(function(success) {
-        return <NewListItem rockets={success} key={success.id} />
-      })
-     }
+       if(this.state.reused) {
+         if(this.state.reddit) {
+           console.log('success and reddit and reused');
+          let filtArr = this.state.rockets.filter(rocket => rocket.launch_success === true && rocket.reuse.core === true && rocket.links.reddit_launch !== null);
+          console.log(filtArr);
+          success = filtArr.map(function(success) {
+            return <NewListItem rockets={success} key={success.id} />
+          }) 
+         } else {
+         console.log('success and reused');
+         let filtArr = this.state.rockets.filter(rocket => rocket.launch_success === true && rocket.reuse.core === true);
+         console.log(filtArr);
+         success = filtArr.map(function(success) {
+           return <NewListItem rockets={success} key={success.id} />
+         })}
+       } 
+       else if (this.state.reddit) {
+         console.log('success and reddit');
+        let filtArr = this.state.rockets.filter(rocket => rocket.launch_success === true && rocket.links.reddit_launch !== null);
+        console.log(filtArr);
+        success = filtArr.map(function(success) {
+          return <NewListItem rockets={success} key={success.id} />
+        })
+       } 
+       else {
+        let filtArr = this.state.rockets.filter(rocket => rocket.launch_success === true);
+        console.log(filtArr);
+        success = filtArr.map(function(success) {
+          return <NewListItem rockets={success} key={success.id} />
+      })}
+     } 
      else if(this.state.reused) {
         let filtArr = this.state.rockets.filter(rocket => rocket.reuse.core === true);
         console.log(filtArr);
